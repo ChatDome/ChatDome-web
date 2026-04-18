@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ChatDome - AI 主机安全助手。用大白话管理服务器，7x24小时智能巡检，让暴躁的护盾帮你挡住暗黑攻击。">
+    <meta name="keywords" content="ChatDome, AI运维, 主机安全, 网络安全, Telegram Bot, 哨兵模式">
+    <title>ChatDome / 你的赛博物理主机护盾</title>
+    
+    <!-- 引入极客字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;500;700;800&family=Noto+Sans+SC:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- 背景粒子/光效 -->
+    <div class="bg-glow bg-left"></div>
+    <div class="bg-glow bg-right"></div>
+    
+    <!-- Navbar -->
+    <header class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="ChatDome.png" alt="ChatDome Logo" class="logo-icon">
+                <span class="logo-text">ChatDome_</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#features">装备库</a>
+                <a href="#sentinel">哨兵管线</a>
+                <a href="https://github.com/ChatDome/ChatDome" target="_blank" class="cyber-button nav-btn">
+                    <i data-lucide="github"></i> Star on GitHub
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero slide-up">
+            <div class="hero-content">
+                <div class="badge">v0.2.0 Sentinel 已上线 🚀</div>
+                <h1 class="hero-title">服务器又炸了？<br><span class="gradient-text">别慌，你的 AI 黑客已就位。</span></h1>
+                <p class="hero-subtitle">告别满屏的 <code>tail -f /var/log/auth.log</code>。用人话提问，让大模型自动帮你排查入侵、监测磁盘、防御爆破，24小时不打烊的极客门神。</p>
+                
+                <div class="hero-actions">
+                    <a href="https://github.com/ChatDome/ChatDome" target="_blank" class="cyber-button primary-btn">
+                        克隆仓库部署 <i data-lucide="terminal"></i>
+                    </a>
+                    <a href="#features" class="cyber-button ghost-btn">探测详情</a>
+                </div>
+            </div>
+
+            <!-- Terminal Mockup -->
+            <div class="terminal-mockup tilt-effect">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">telegram://chatdome_bot</span>
+                </div>
+                <div class="terminal-body" id="typewriter-container">
+                    <!-- JS 打字机内容注入在这里 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Bento Box -->
+        <section id="features" class="features-section">
+            <h2 class="section-title">核心外挂 <span class="gradient-text">/ Features</span></h2>
+            
+            <div class="bento-grid">
+                <!-- 卡片 1 (占两列) -->
+                <div class="bento-card col-span-2 glass-card hover-glow">
+                    <div class="card-icon"><i data-lucide="message-square-dashed"></i></div>
+                    <h3>废话流交互驱动</h3>
+                    <p>不用再背那些反人类的长串 Linux 参数。直接发语音或者文字：“有没有人在爆破我的SSH？”，Agent 自动解析意图，执行对应的安全探测组合包，把复杂的日志洗成你能看懂的八卦。</p>
+                </div>
+
+                <!-- 卡片 2 -->
+                <div class="bento-card glass-card hover-glow bg-darker">
+                    <div class="card-icon text-red"><i data-lucide="skull"></i></div>
+                    <h3>God Mode <br>(谨慎解锁)</h3>
+                    <p>一键突破只读限制，让 AI 获得修改、封禁、提权的物理权限。配合人工双重确认机制，危险但迷人。</p>
+                </div>
+
+                <!-- 卡片 3 (Sentinel专属大卡片) -->
+                <div id="sentinel" class="bento-card col-span-2 row-span-2 glass-card hover-glow border-gradient">
+                    <div class="card-icon text-cyan"><i data-lucide="radar"></i></div>
+                    <h3>7×24 极度暴躁的哨兵管线</h3>
+                    <p>内置五层防御的 SOC 引擎，彻底解决“告警轰炸”。</p>
+                    <ul class="feature-list">
+                        <li><i data-lucide="thermometer-snowflake"></i> <strong>冷启动护盾：</strong> 给新建主机一轮学习时间，拒绝一开始就瞎哔哔。</li>
+                        <li><i data-lucide="layers"></i> <strong>推拉分离体系：</strong> 致命级别 (级数≥7) 夺命连环 Call Telegram 推送；低级骚扰只配进 Log 待查。</li>
+                        <li><i data-lucide="timer-reset"></i> <strong>自适应冷却期：</strong> 相同的报错 5 分钟内绝不发第二遍，保护你的血压。</li>
+                    </ul>
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Cyber Security" class="card-image-cyber mt-4">
+                </div>
+
+                <!-- 卡片 4 -->
+                <div class="bento-card glass-card hover-glow">
+                    <div class="card-icon text-orange"><i data-lucide="package-search"></i></div>
+                    <h3>40+ 预置审计包</h3>
+                    <p>脱胎于企业级 SOC 的最佳实践，覆盖 SSH 爆破、网络外联、提权监测、可疑进程和 Docker 容器越权扫描，还在不断扩充的武器库。</p>
+                </div>
+
+                <!-- 卡片 5 -->
+                <div class="bento-card glass-card hover-glow">
+                    <div class="card-icon text-green"><i data-lucide="smartphone-nfc"></i></div>
+                    <h3>Telegram 原生体验</h3>
+                    <p>坐地铁时也能掏出手机修机器，带有精美的界面反馈、MarkdownV2 渲染和按钮交互，运维从未如此优雅。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="ChatDome.png" alt="ChatDome Logo" class="footer-logo-icon"> ChatDome
+            </div>
+            <p class="footer-slogan">为极客打造的最后一道防线 · Keep hacking & stay secure.</p>
+            <div class="footer-links">
+                <a href="https://github.com/ChatDome/ChatDome" target="_blank"><i data-lucide="github"></i> Source Code</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 ChatDome Project. All records audited.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
