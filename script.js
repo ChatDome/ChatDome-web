@@ -1,106 +1,84 @@
-/* =========================================================================
-   ChatDome / Interactions & Micro-Animations
-   ========================================================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.site-header');
+    const chatFeed = document.getElementById('chat-feed');
 
-    // 1. Navbar Glass Effect on Scroll
-    const nav = document.querySelector('.glass-nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.style.background = 'rgba(7, 9, 15, 0.85)';
-            nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
-        } else {
-            nav.style.background = 'rgba(7, 9, 15, 0.5)';
-            nav.style.boxShadow = 'none';
-        }
-    });
+    const updateHeader = () => {
+        header?.classList.toggle('is-scrolled', window.scrollY > 18);
+    };
 
-    // 2. Typewriter Effect for Terminal
-    const terminalLines = [
-        { type: 'user', text: '有没有人在爆破我的SSH？' },
-        { type: 'bot', text: '正在扫描 /var/log/auth.log...' },
-        { type: 'bot-alert', text: '⚠️ 发现异常：IP 185.xxx.xxx.xxx 在过去10分钟尝试登录 root 账户 342 次。' },
-        { type: 'bot', text: '已为你自动屏蔽该 IP，并添加到 Sentinel 哨兵黑名单。需要发送全量巡检报告吗？' }
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    const chatMessages = [
+        { from: 'me', text: '今晚帮我盯一下这台服务器。' },
+        { from: 'bot', text: '收到。哨兵已接管登录、进程和磁盘巡检。' },
+        { from: 'alert', text: 'SSH 爆破\n185.xxx 连续尝试 root 登录，10 分钟 342 次。' },
+        { from: 'bot', text: '已合并重复告警。建议临时封禁 30 分钟，并保留审计记录。', actions: ['确认封禁', '查看证据'] }
     ];
 
-    const typeWriterContainer = document.getElementById('typewriter-container');
-    let lineIndex = 0;
+    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-    async function typeLine(lineObj) {
-        const lineEl = document.createElement('div');
-        lineEl.className = `line-${lineObj.type}`;
-        typeWriterContainer.appendChild(lineEl);
-
-        const chars = lineObj.text.split('');
-        for (let i = 0; i < chars.length; i++) {
-            lineEl.textContent += chars[i];
-            // 极客打字机的停顿感
-            const delay = lineObj.type === 'user' ? (Math.random() * 50 + 20) : (Math.random() * 10 + 5);
-            await new Promise(r => setTimeout(r, delay));
+    async function addMessage(message) {
+        if (!chatFeed) {
+            return;
         }
-        
-        await new Promise(r => setTimeout(r, 600)); // 两行之间的思考时间
+
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${message.from}`;
+        chatFeed.appendChild(bubble);
+
+        if (message.from === 'me') {
+            bubble.textContent = message.text;
+        } else {
+            for (const char of message.text) {
+                bubble.textContent += char;
+                await wait(message.from === 'alert' ? 8 : 13);
+            }
+        }
+
+        if (message.actions) {
+            const actions = document.createElement('div');
+            actions.className = 'chat-actions';
+            message.actions.forEach(label => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = label;
+                actions.appendChild(button);
+            });
+            bubble.appendChild(actions);
+        }
+
+        chatFeed.scrollTop = chatFeed.scrollHeight;
+        await wait(message.from === 'me' ? 320 : 420);
     }
 
-    async function startTypeWriter() {
-        await new Promise(r => setTimeout(r, 1000)); // 初始延迟
-        for (const line of terminalLines) {
-            await typeLine(line);
+    async function startChatPreview() {
+        await wait(520);
+        for (const message of chatMessages) {
+            await addMessage(message);
         }
-        // 打字结束后光标闪烁
-        const cursor = document.createElement('span');
-        cursor.textContent = '█';
-        cursor.style.animation = 'blink 1s step-end infinite';
-        cursor.style.color = 'var(--cyber-blue)';
-        typeWriterContainer.lastChild.appendChild(cursor);
     }
-    
-    // 全局样式中未定义 blink，这里动态注入
-    const style = document.createElement('style');
-    style.innerHTML = `
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
 
-    startTypeWriter();
+    startChatPreview();
 
-    // 3. Scroll Reveal Animation for Bento Cards
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
+    const revealItems = document.querySelectorAll('.reveal');
+
+    if (!('IntersectionObserver' in window)) {
+        revealItems.forEach(item => item.classList.add('is-visible'));
+        return;
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('is-visible');
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    const cards = document.querySelectorAll('.bento-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(40px)';
-        card.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s`;
-        observer.observe(card);
+    }, {
+        threshold: 0.16,
+        rootMargin: '0px 0px -48px 0px'
     });
 
-    // 4. Glow hover tracking (Optional slick effect)
-    document.querySelectorAll('.bento-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
+    revealItems.forEach(item => observer.observe(item));
 });
