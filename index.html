@@ -3,174 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ChatDome - 面向个人服务器和轻量团队的 AI 主机安全助手，用自然语言完成巡检、告警判断和处置确认。">
-    <meta name="keywords" content="ChatDome, AI运维, 主机安全, 网络安全, 聊天助手, 哨兵模式">
-    <title>ChatDome / AI 主机安全助手</title>
+    <meta name="description" content="ChatDome - The Zero-Infrastructure AI Host Security Agent. 零基础设施的 AI 主机安全智能体，通过 Telegram 交付。">
+    <meta name="keywords" content="ChatDome, AI Agent, 主机安全, Telegram Bot, 零基础设施, 双平面架构, Sentinel">
+    <title>ChatDome — AI Host Security Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="grid-overlay"></div>
     <header class="site-header">
         <div class="nav-shell">
-            <a class="brand" href="#" aria-label="ChatDome 首页">
+            <a class="brand" href="#" aria-label="ChatDome Home">
                 <span class="brand-mark" aria-hidden="true">
-                    <img src="ChatDome-mark.jpg" alt="">
+                    <img src="ChatDome-mark.jpg" alt="ChatDome">
                 </span>
-                <span>ChatDome</span>
+                <span>CHATDOME</span>
             </a>
-            <nav class="nav-links" aria-label="主导航">
-                <a href="#features">能力</a>
-                <a href="#sentinel">哨兵</a>
-                <a class="nav-action" href="https://github.com/ChatDome/ChatDome" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <nav class="nav-links" aria-label="Primary Navigation">
+                <a href="#features">FEATURES</a>
+                <a class="nav-action" href="https://github.com/ChatDome/ChatDome" target="_blank" rel="noopener noreferrer">GITHUB</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-copy">
-                <p class="eyebrow">Sentinel v0.2.0</p>
-                <h1>把主机安全，交给一个听得懂人话的哨兵。</h1>
-                <p class="hero-subtitle">ChatDome 把巡检、告警判断和处置确认放进一场清楚的对话。你问一句，它查日志、看进程、盯磁盘，再把风险讲明白。</p>
+        <section class="hero grid-container">
+            <div class="hero-content">
+                <div class="hero-eyebrow">CHATDOME V0.2.0-SENTINEL</div>
+                <h1>THE ZERO-INFRASTRUCTURE<br>AI HOST SECURITY AGENT.</h1>
+                <p class="hero-subtitle">将企业 SOC 级别的 AI Agent 能力浓缩进一个 Telegram Bot。单进程部署，对主机零侵入，以自然语言驱动安全巡检、威胁研判与应急响应的完整闭环。</p>
                 <div class="hero-actions">
-                    <a class="button button-primary" href="https://github.com/ChatDome/ChatDome" target="_blank" rel="noopener noreferrer">查看源码</a>
-                    <a class="button button-secondary" href="#sentinel">了解哨兵管线</a>
+                    <a class="button button-primary" href="https://github.com/ChatDome/ChatDome" target="_blank" rel="noopener noreferrer">DEPLOY NOW</a>
+                    <a class="button button-secondary" href="https://github.com/ChatDome/ChatDome-docs" target="_blank">READ DOCS</a>
                 </div>
-                <div class="signal-row" aria-label="关键指标">
-                    <div>
-                        <strong>7x24</strong>
-                        <span>持续巡检</span>
+                
+                <div class="signal-row">
+                    <div class="signal-item">
+                        <span class="signal-label">DEPLOYMENT</span>
+                        <span class="signal-value">0-Config Pip</span>
                     </div>
-                    <div>
-                        <strong>40+</strong>
-                        <span>审计动作</span>
+                    <div class="signal-item">
+                        <span class="signal-label">MONITORING</span>
+                        <span class="signal-value">7x24 Sentinel</span>
                     </div>
-                    <div>
-                        <strong>双确认</strong>
-                        <span>高危处置</span>
+                    <div class="signal-item">
+                        <span class="signal-label">CORE</span>
+                        <span class="signal-value">AI-First Agent</span>
                     </div>
                 </div>
             </div>
 
-            <div class="hero-visual" aria-label="ChatDome 手机聊天交互画面">
-                <div class="phone-scene">
-                    <div class="phone-device">
-                        <div class="phone-speaker" aria-hidden="true"></div>
-                        <div class="chat-app-header">
-                            <div>
-                                <strong>ChatDome 助手</strong>
-                                <span>守护中</span>
-                            </div>
-                        </div>
-                        <div class="chat-feed" id="chat-feed" aria-live="polite"></div>
-                        <div class="chat-compose" aria-label="聊天输入框">
-                            <span>输入你的问题...</span>
-                            <button type="button">发送</button>
-                        </div>
+            <div class="terminal-showcase">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span></span><span></span><span></span>
                     </div>
-                    <div class="phone-signal">
-                        <strong>SSH 爆破</strong>
-                        <span>建议封禁</span>
-                    </div>
+                    <div class="terminal-title">chatdome@sentinel: ~/workspace</div>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <!-- Typing animation logic will populate this -->
                 </div>
             </div>
         </section>
 
-        <section id="features" class="section">
-            <div class="section-heading">
-                <p class="eyebrow">Core</p>
-                <h2>每天替你盯住这些事</h2>
-                <p>把零散命令变成稳定流程，把模糊告警变成能行动的结论。</p>
+        <section id="features" class="section-blueprint">
+            <div class="blueprint-header">
+                <h2>01. CORE CAPABILITIES</h2>
+                <p>以 AI Agent 为核心的主机安全能力矩阵</p>
             </div>
-
-            <div class="feature-grid">
-                <article class="flip-card reveal" tabindex="0">
-                    <div class="flip-card-inner">
-                        <div class="flip-face flip-front">
-                            <span class="card-kicker">01</span>
-                            <h3>自然语言巡检</h3>
-                            <p>把一句聊天变成一组稳定检查。</p>
-                            <span class="flip-hint">翻开看细节</span>
-                        </div>
-                        <div class="flip-face flip-back">
-                            <span class="card-kicker">Chat</span>
-                            <p>直接问“有没有人在爆破 SSH”，ChatDome 会组合日志、登录记录和封禁状态，给出清楚判断。</p>
-                        </div>
-                    </div>
+            
+            <div class="blueprint-grid">
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">CHATOPS</div>
+                    <h3>Telegram-Native ChatOps</h3>
+                    <p>无需 Web 面板或 CLI 工具。直接在 Telegram 中用自然语言完成安全巡检、告警研判与高危操作的交互式确认。</p>
                 </article>
 
-                <article class="flip-card reveal" tabindex="0">
-                    <div class="flip-card-inner">
-                        <div class="flip-face flip-front">
-                            <span class="card-kicker">02</span>
-                            <h3>主机风险归因</h3>
-                            <p>把零碎输出收束成一条事件线。</p>
-                            <span class="flip-hint">翻开看细节</span>
-                        </div>
-                        <div class="flip-face flip-back">
-                            <span class="card-kicker">Context</span>
-                            <p>磁盘、进程、外联、容器权限和提权痕迹会被放进同一条线索里，不再只给一堆原始输出。</p>
-                        </div>
-                    </div>
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">MEMORY VAULT</div>
+                    <h3>Multi-Turn Context</h3>
+                    <p>具备跨会话持久化的上下文记忆。你可以针对上一轮排查到的可疑进程继续追问：“它的父进程是什么？”“关联了哪些网络连接？”，保持完整的调查链路。</p>
                 </article>
 
-                <article class="flip-card reveal" tabindex="0">
-                    <div class="flip-card-inner">
-                        <div class="flip-face flip-front">
-                            <span class="card-kicker">03</span>
-                            <h3>高危动作守门</h3>
-                            <p>危险动作先讲清楚，再等你确认。</p>
-                            <span class="flip-hint">翻开看细节</span>
-                        </div>
-                        <div class="flip-face flip-back">
-                            <span class="card-kicker">Confirm</span>
-                            <p>默认只读。涉及封禁、修改和提权时，先说明影响范围，再等待人工确认。</p>
-                        </div>
-                    </div>
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">MONITORING</div>
+                    <h3>Sentinel 7×24 Patrol</h3>
+                    <p>基于 YAML Command Pack 的声明式规则引擎，持续监控进程、磁盘、网络连接等关键指标。内置冷启动观察期、告警冷却窗口与事件聚合降噪，避免无效告警轰炸。</p>
+                </article>
+
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">AUDIT</div>
+                    <h3>SSH Session Auditing</h3>
+                    <p>对接内核级 auditd 审计框架。检测到异常登录后，自动按 Session ID 追踪该会话内执行的所有命令，区分同一用户的并发会话，覆盖“登录后做了什么”的审计盲区。</p>
+                </article>
+
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">EXECUTION</div>
+                    <h3>AI-Driven Sandbox</h3>
+                    <p>基于 ReAct 推理循环，AI 自主规划并生成诊断命令，在受限的沙箱环境中执行。所有涉及系统变更的操作均需经过人工审批后方可生效。</p>
+                </article>
+
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">DEPLOYMENT</div>
+                    <h3>Zero-Infrastructure</h3>
+                    <p>单进程运行，SQLite 本地文件存储，pip install 即可部署。无需额外数据库、无需常驻 Agent 守护进程，不修改系统配置、不写入 iptables。</p>
                 </article>
             </div>
         </section>
 
-        <section id="sentinel" class="sentinel-section">
-            <div class="sentinel-copy">
-                <p class="eyebrow">Sentinel</p>
-                <h2>少一点告警轰炸，多一点真正有用的提醒。</h2>
-                <p>哨兵管线会先学习主机状态，再按风险等级决定是否推送。低级噪声留在日志，高危事件才打断你。</p>
+        <section id="comparison" class="section-matrix">
+            <div class="blueprint-header">
+                <h2>02. WHY CHATDOME?</h2>
+                <p>为个人开发者与小型团队设计，填补轻量级 AI 安全工具的空白。</p>
             </div>
+            
+            <div class="matrix-container">
+                <table class="blueprint-table">
+                    <thead>
+                        <tr>
+                            <th>DIMENSION</th>
+                            <th class="highlight-col">CHATDOME</th>
+                            <th>OPEN-SOURCE SOC</th>
+                            <th>ENTERPRISE EDR</th>
+                            <th>SHELL SCRIPTS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Deployment</td>
+                            <td class="highlight-col">0-Config Pip Install</td>
+                            <td>Server + Agent</td>
+                            <td>SaaS + Agent</td>
+                            <td>DIY Maintenance</td>
+                        </tr>
+                        <tr>
+                            <td>Interaction</td>
+                            <td class="highlight-col">Telegram ChatOps</td>
+                            <td>Web Dashboard</td>
+                            <td>Web Console</td>
+                            <td>CLI & Crontab</td>
+                        </tr>
+                        <tr>
+                            <td>AI Integration</td>
+                            <td class="highlight-col">Core (ReAct Engine)</td>
+                            <td>Assistant Only</td>
+                            <td>Core Analysis</td>
+                            <td>None</td>
+                        </tr>
+                        <tr>
+                            <td>Target Scale</td>
+                            <td class="highlight-col">1-10 Servers</td>
+                            <td>10-1000 Servers</td>
+                            <td>Enterprise</td>
+                            <td>1-5 Servers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-            <div class="pipeline">
-                <div class="pipeline-item reveal">
-                    <span>冷启动</span>
-                    <p>给新主机一段观察时间，避免上线第一分钟就误报。</p>
-                </div>
-                <div class="pipeline-item reveal">
-                    <span>分级</span>
-                    <p>把 SSH 爆破、异常外联、磁盘告急和容器越权分层处理。</p>
-                </div>
-                <div class="pipeline-item reveal">
-                    <span>冷却</span>
-                    <p>同类问题短时间只提醒一次，保留上下文，不刷屏。</p>
-                </div>
-                <div class="pipeline-item reveal">
-                    <span>确认</span>
-                    <p>危险操作先询问，再执行；每一步都留痕。</p>
-                </div>
+        <section id="safety" class="section-blueprint">
+            <div class="blueprint-header">
+                <h2>03. HUMAN-IN-THE-LOOP</h2>
+                <p>三层纵深防护，确保 AI 的每一步操作都在可控边界之内。</p>
+            </div>
+            
+            <div class="blueprint-grid safety-grid">
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">TIER 1 : SAFE</div>
+                    <h3>只读巡检 (Auto-Exec)</h3>
+                    <p>查看进程列表、读取系统日志等不改变主机状态的只读操作，AI 自主推导命令并直接执行，即时返回分析结论。</p>
+                </article>
+
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">TIER 2 : RISKY</div>
+                    <h3>命令白名单拦截</h3>
+                    <p>内建命令白名单校验机制。当 AI 生成的命令不在预授权列表中或被判定具有潜在破坏性时，执行将被即时阻断并推送告警。</p>
+                </article>
+
+                <article class="blueprint-cell">
+                    <div class="cell-kicker">TIER 3 : CRITICAL</div>
+                    <h3>交互式审批 (Human Approval)</h3>
+                    <p>涉及封禁 IP、终止进程等不可逆操作时，系统将通过 Telegram 推送包含操作详情的审批请求，必须由人工确认后方可执行。</p>
+                </article>
             </div>
         </section>
 
     </main>
 
     <footer class="site-footer">
-        <div class="footer-inner">
-            <a class="brand" href="#" aria-label="ChatDome 首页">
-                <span class="brand-mark" aria-hidden="true">
-                    <img src="ChatDome-mark.jpg" alt="">
-                </span>
-                <span>ChatDome</span>
-            </a>
-            <p>Keep hacking. Stay accountable.</p>
-            <a href="https://github.com/ChatDome/ChatDome" target="_blank" rel="noopener noreferrer">Source Code</a>
+        <div class="footer-grid">
+            <div class="brand">
+                <span>CHATDOME</span>
+            </div>
+            <p class="footer-copy">AI-Powered Host Security for Everyone.</p>
+            <div class="footer-links">
+                <a href="https://github.com/ChatDome/ChatDome" target="_blank">SOURCE CODE</a>
+                <a href="https://github.com/ChatDome/ChatDome-docs" target="_blank">DOCUMENTATION</a>
+            </div>
         </div>
-        <p class="copyright">&copy; 2026 ChatDome Project.</p>
+        <div class="copyright">
+            <p>&copy; 2026 CHATDOME PROJECT. ALL RIGHTS RESERVED.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
